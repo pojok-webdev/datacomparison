@@ -165,6 +165,16 @@
             console.log('Err',err)
         })
     })
+    $('#dataTable tbody tr').each(function(){
+        id = $(this).find('.client_id').text()
+        name = $(this).find('.client_name').text()
+        xname = $(this).find('.import_name').text()
+        if(name.trim()!==xname.trim()){
+            console.log(id,name,' <> ',xname)
+            $(this).find('.client_name').css('background-color','red')
+            $(this).find('.client_name').css('color','white')
+        }
+    })
 </script>
 </body>
 </html>
