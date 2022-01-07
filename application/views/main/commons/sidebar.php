@@ -25,6 +25,19 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>DB vs Impor (Alias)</span></a>
 </li>
+
+<li class="nav-item <?php echo $getactive['hunter']?>">
+    <a class="nav-link" href="/main/hunter">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Hunter vs User_ID</span></a>
+</li>
+
+<li class="nav-item <?php echo $getactive['download']?>">
+    <a class="nav-link" href="/main/download">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Download Excel</span></a>
+</li>
+
 <hr class="sidebar-divider d-none d-md-block">
 
 <!-- Sidebar Toggler (Sidebar) -->
