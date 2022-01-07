@@ -57,8 +57,8 @@
                                             <td class="client_id"><?php echo $obj->id;?></td>
                                             <td class="user_id"><?php echo $obj->user_id;?></td>
                                             <td class="user_name"><?php echo $obj->am;?></td>
-                                            <td class="hunter"><?php echo $obj->hunter_id;?></td>
-                                            <td class="hunter_id"><?php echo $obj->hunter_name;?></td>
+                                            <td class="hunter_id"><?php echo $obj->hunter_id;?></td>
+                                            <td class="hunter_name"><?php echo $obj->hunter_name;?></td>
                                             <td><button class="btn btnUpdate">Update</button></td>
                                         </tr>
                                         <?php }?>
@@ -114,67 +114,40 @@
     $('#dataTable').on('click','.btnUpdate',function(){
         tr = $(this).stairUp({level:2})
         id = tr.find('.client_id').text()
-        alias = tr.find('.import_alias').text()
+        hunter_id = tr.find('.hunter_id').text()
+        hunter_name = tr.find('.hunter_name').text()
         $.ajax({
             url:'/processors/update',
             data:{
                 tableName:'clients',
-                columnName:'alias',
-                columnValue:alias,
+                columnName:'user_id',
+                columnValue:hunter_id,
                 id:id
             },
             type:'post',dataType:'json'
         })
         .done(res=>{
-            console.log('Success update alias',alias,res)
+            console.log('Success update alias',hunter_id,res)
             createLog({
-                subject:'Update clientalias ID:'+id+'('+alias+')',
+                subject:'Update clienthunter ID:'+id+'('+hunter_id+' / '+hunter_name+')',
                 description:'Update dari modul Admin'
             })
-            tr.find('.client_alias').text(alias)
-            tr.find('.client_alias').css('background-color','white')
-            tr.find('.client_alias').css('color','#858796')
+            tr.find('.user_id').text(hunter_id)
+            tr.find('.user_id').css('background-color','white')
+            tr.find('.user_id').css('color','#858796')
         })
         .fail(err=>{
-            console.log('Err update alias',err)
-        })
-    })
-    $('#dataTable').on('click','.btnSetNonActive',function(){
-        tr = $(this).stairUp({level:2})
-        id = tr.find('.client_id').text()
-        alias = tr.find('.client_alias').text()
-        console.log('clicked',$(this).stairUp({level:2}).find('.client_id').text())
-        $.ajax({
-            url:'/processors/update',
-            data:{
-                tableName:'clients',
-                columnName:'active',
-                columnValue:'0',
-                id:id
-            },
-            type:'post',
-            dataType:'json'
-        })
-        .done(res=>{
-            console.log('Result',res)
-            tr.remove()
-            createLog({
-                subject:'Penonaktifan pelanggan id:'+id+' ('+alias+')',
-                description:'Penonaktifan dari modul Admin'
-            })
-        })
-        .fail(err=>{
-            console.log('Err',err)
+            console.log('Err update user_id',err)
         })
     })
     $('#dataTable tbody tr').each(function(){
         id = $(this).find('.client_id').text()
-        alias = $(this).find('.client_alias').text()
-        xalias = $(this).find('.import_alias').text()
-        if(alias.trim()!==xalias.trim()){
-            console.log(id,alias,' <> ',xalias)
-            $(this).find('.client_alias').css('background-color','red')
-            $(this).find('.client_alias').css('color','white')
+        user_id = $(this).find('.user_id').text()
+        hunter_id = $(this).find('.hunter_id').text()
+        if(user_id.trim()!==hunter_id.trim()){
+            console.log(id,user_id,' <> ',hunter_id)
+            $(this).find('.user_id').css('background-color','red')
+            $(this).find('.user_id').css('color','white')
         }
     })
 </script>
