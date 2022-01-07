@@ -4,7 +4,7 @@ Class Client extends CI_Model{
         parent::__construct();
     }
     function gets(){
-        $sql = 'select a.id,a.name,b.id bid,b.nama from clients a ';
+        $sql = 'select a.id,a.name,b.id bid,b.nama,a.alias,b.alias balias from clients a ';
         $sql.= 'left outer join tmp.client202112 b on b.id=a.id ';
         $sql.= 'where active="1" ';
         $ci = & get_instance();
