@@ -32,12 +32,30 @@ Class Client extends CI_Model{
             'cnt'=>$que->num_rows()
         );
     }
+    function getsla(){
+        $sql = 'select a.id,a.user_id,group_concat(c.sla) asla';
+        $sql.= 'from clients a ';
+        $sql.= 'left outer join fbs b on b.client_id=a.id ';
+        $sql.= 'left outer join fbsslas c on c.nofb=b.nofb ';
+        $sql.= 'left outer join '.$this->config->item('dbcompareto').'.client202112 d on d.id=a.id ';
+        $sql.= 'where a.active="1" ';
+        $ci = & get_instance();
+        $que =  $ci->db->query($sql);
+        return array(
+            'res'=>$que->result(),
+            'cnt'=>$que->num_rows()
+        );
+    }
     function getorphans(){
         $sql = 'select a.id,a.name,b.id bid,b.nama,a.alias,b.alias balias, ';
-        $sql.= 'case a.clientcategory when "2" then "Platinum" when "3" then "Gold" when "4" then "Silver" when "5" then "Bronze" else "Undefined" end grade ';
+        $sql.= 'c.username hunter,d.username farmer,';
+        $sql.= 'case a.clientcategory when "2" then "Platinum" when "3" then "Gold" when "4" then "Silver" when "5" then "Bronze" else "Undefined" end grade, ';
+        $sql.= 'a.createdate ';
         $sql.= 'from clients a ';
         $sql.= 'left outer join '.$this->config->item('dbcompareto').'.client202112 b on b.id=a.id ';
-        $sql.= 'where active="1" and  b.id is null';
+        $sql.= 'left outer join users c on c.id=a.user_id ';
+        $sql.= 'left outer join users d on d.id=a.sale_id ';
+        $sql.= 'where a.active="1" and  b.id is null';
         $ci = & get_instance();
         $que =  $ci->db->query($sql);
         return array(
