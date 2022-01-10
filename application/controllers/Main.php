@@ -11,7 +11,7 @@ Class Main extends CI_Controller{
             'tabletitle'=>'Pelanggan',
             'getactive'=>array(
                 'name'=>'active',
-                'alias'=>'','download'=>'','hunter'=>''),
+                'alias'=>'','download'=>'','downloadorphan'=>'','hunter'=>''),
             'objs'=>$objs['res']
         );
         $this->load->view('main/tables',$data);
@@ -24,7 +24,7 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'active',
-                'download'=>'','hunter'=>''
+                'download'=>'','downloadorphan'=>'','hunter'=>''
             ),
             'objs'=>$objs['res']
         );
@@ -38,7 +38,7 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'',
-                'download'=>'',
+                'download'=>'','downloadorphan'=>'',
                 'hunter'=>'active'
             ),
             'objs'=>$objs['res']
@@ -53,13 +53,29 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'',
-                'download'=>'active','hunter'=>''
+                'download'=>'active','downloadorphan'=>'','hunter'=>''
             ),
             'objs'=>$objs['res'],
             'subject'=>'Pelanggan',
             'filename'=>'pelanggan'
         );
         $this->load->view('main/download',$data);
+    }
+    function downloadorphan(){
+        $objs = $this->client->gets();
+        $data = array(
+            'pagetitle'=>'Download Orpan',
+            'tabletitle'=>'Pelanggan',
+            'getactive'=>array(
+                'name'=>'',
+                'alias'=>'',
+                'download'=>'','downloadorphan'=>'active','hunter'=>''
+            ),
+            'objs'=>$objs['res'],
+            'subject'=>'Pelanggan',
+            'filename'=>'pelanggan_tidak_ada_di_excel'
+        );
+        $this->load->view('main/downloadorphan',$data);
     }
     function info(){
         phpinfo();

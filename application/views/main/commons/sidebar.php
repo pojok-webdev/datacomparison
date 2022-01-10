@@ -37,6 +37,11 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Download Excel</span></a>
 </li>
+<li class="nav-item <?php echo $getactive['downloadorphan']?>">
+    <a class="nav-link" href="/main/downloadorphan">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Tidak ada di excel</span></a>
+</li>
 
 <hr class="sidebar-divider d-none d-md-block">
 
