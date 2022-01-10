@@ -62,7 +62,7 @@ Class Main extends CI_Controller{
         $this->load->view('main/download',$data);
     }
     function downloadorphan(){
-        $objs = $this->client->gets();
+        $objs = $this->client->getorphans();
         $data = array(
             'pagetitle'=>'Download Orpan',
             'tabletitle'=>'Pelanggan',
