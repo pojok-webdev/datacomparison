@@ -10,7 +10,7 @@
 		<table>
 			<thead>
                 <tr>
-                   <th>No</th><th>ID</th><th>Nama</th><th>Alias</th><th>Address</th>
+                   <th>No</th><th>ID</th><th>Nama</th><th>Alias</th><th>Grade</th><th>Farmer</th><th>Hunter</th>
                 </tr>
 			</thead>
 			<tbody>
@@ -23,6 +23,8 @@
                     <td><?php echo $obj->name;?></td>
                     <td><?php echo $obj->alias;?></td>
                     <td><?php echo $obj->grade;?></td>
+                    <td><?php echo $obj->farmer;?></td>
+                    <td><?php echo $obj->hunter;?></td>
                 </tr>
                 <?php }?>
                 <tr>

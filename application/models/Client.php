@@ -6,9 +6,17 @@ Class Client extends CI_Model{
     }
     function gets(){
         $sql = 'select a.id,a.name,b.id bid,b.nama,a.alias,b.alias balias, ';
-        $sql.= 'case a.clientcategory when "2" then "Platinum" when "3" then "Gold" when "4" then "Silver" when "5" then "Bronze" else "Undefined" end grade ';
+        $sql.= 'case a.clientcategory ';
+        $sql.= ' when "2" then "Platinum"';
+        $sql.= ' when "3" then "Gold"';
+        $sql.= ' when "4" then "Silver"';
+        $sql.= ' when "5" then "Bronze"';
+        $sql.= ' else "Undefined" end grade, ';
+        $sql.= 'c.username hunter,d.username farmer ';
         $sql.= 'from clients a ';
         $sql.= 'left outer join '.$this->config->item('dbcompareto').'.client202112 b on b.id=a.id ';
+        $sql.= 'left outer join users c on c.id=a.user_id ';
+        $sql.= 'left outer join users d on d.id=b.user_id ';
         $sql.= 'where active="1" ';
         $ci = & get_instance();
         $que =  $ci->db->query($sql);
