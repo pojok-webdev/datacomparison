@@ -11,7 +11,7 @@ Class Main extends CI_Controller{
             'tabletitle'=>'Pelanggan',
             'getactive'=>array(
                 'name'=>'active',
-                'alias'=>'','download'=>'','downloadorphan'=>'','hunter'=>''),
+                'alias'=>'','download'=>'','downloadorphan'=>'','hunter'=>'','sla'=>''),
             'objs'=>$objs['res']
         );
         $this->load->view('main/tables',$data);
@@ -24,7 +24,7 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'active',
-                'download'=>'','downloadorphan'=>'','hunter'=>''
+                'download'=>'','downloadorphan'=>'','hunter'=>'','sla'=>''
             ),
             'objs'=>$objs['res']
         );
@@ -39,11 +39,27 @@ Class Main extends CI_Controller{
                 'name'=>'',
                 'alias'=>'',
                 'download'=>'','downloadorphan'=>'',
-                'hunter'=>'active'
+                'hunter'=>'active','sla'=>''
             ),
             'objs'=>$objs['res']
         );
         $this->load->view('main/hunter',$data);
+    }
+    function sla(){
+        $objs = $this->client->getsla();
+        $data = array(
+            'pagetitle'=>'Perbandingan sla db vs sla xls',
+            'tabletitle'=>'Pelanggan',
+            'getactive'=>array(
+                'name'=>'',
+                'alias'=>'',
+                'hunter'=>'',
+                'download'=>'','downloadorphan'=>'',
+                'sla'=>'active'
+            ),
+            'objs'=>$objs['res']
+        );
+        $this->load->view('main/sla',$data);
     }
     function download(){
         $objs = $this->client->gets();
@@ -53,7 +69,7 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'',
-                'download'=>'active','downloadorphan'=>'','hunter'=>''
+                'download'=>'active','downloadorphan'=>'','hunter'=>'','sla'=>''
             ),
             'objs'=>$objs['res'],
             'subject'=>'Pelanggan',
@@ -69,7 +85,7 @@ Class Main extends CI_Controller{
             'getactive'=>array(
                 'name'=>'',
                 'alias'=>'',
-                'download'=>'','downloadorphan'=>'active','hunter'=>''
+                'download'=>'','downloadorphan'=>'active','hunter'=>'','sla'=>''
             ),
             'objs'=>$objs['res'],
             'subject'=>'Pelanggan',

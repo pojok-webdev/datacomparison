@@ -32,6 +32,12 @@
         <span>Hunter vs User_ID</span></a>
 </li>
 
+<li class="nav-item <?php echo $getactive['sla']?>">
+    <a class="nav-link" href="/main/sla">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>SLA db vs SLA xls</span></a>
+</li>
+
 <li class="nav-item <?php echo $getactive['download']?>">
     <a class="nav-link" href="/main/download">
         <i class="fas fa-fw fa-chart-area"></i>

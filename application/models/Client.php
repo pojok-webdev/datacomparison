@@ -41,12 +41,13 @@ Class Client extends CI_Model{
         );
     }
     function getsla(){
-        $sql = 'select a.id,a.user_id,group_concat(c.sla) asla';
+        $sql = 'select a.id,a.user_id,a.name,group_concat(c.sla) asla,d.sla bsla ';
         $sql.= 'from clients a ';
         $sql.= 'left outer join fbs b on b.client_id=a.id ';
         $sql.= 'left outer join fbsslas c on c.nofb=b.nofb ';
         $sql.= 'left outer join '.$this->config->item('dbcompareto').'.client202112 d on d.id=a.id ';
         $sql.= 'where a.active="1" ';
+        $sql.= 'group by a.id,a.user_id,a.name,d.sla ';
         $ci = & get_instance();
         $que =  $ci->db->query($sql);
         return array(
